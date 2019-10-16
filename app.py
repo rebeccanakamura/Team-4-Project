@@ -23,15 +23,15 @@ class Profile(db.Model):
     __tablename__ = "profiles"
     id = db.Column(db.Integer, primary_key=True)
     
-    logo = db.Column(db.String(100))
-    # title = db.Column(db.String(100000)) 
-    # byline = db.Column(db.String(100000))
-    # headline = db.Column(db.String(100000))
-    # opening = db.Column(db.String(100000))
-    # text1 = db.Column(db.String(100000))
-    # text2 = db.Column(db.String(100000))
-    # pic1 = db.Column(db.String(100000))
-    # pic2 = db.Column(db.String(100000))
+    logo = db.Column(db.String(100000))
+    title = db.Column(db.String(100000)) 
+    byline = db.Column(db.String(100000))
+    headline = db.Column(db.String(100000))
+    opening = db.Column(db.String(100000))
+    text1 = db.Column(db.String(100000))
+    text2 = db.Column(db.String(100000))
+    pic1 = db.Column(db.String(100000))
+    pic2 = db.Column(db.String(100000))
 
     def __init__(self, logo, title, byline, headline, opening, text1, text2, pic1, pic2):
         self.logo = logo
