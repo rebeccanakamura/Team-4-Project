@@ -22,8 +22,8 @@ ma = Marshmallow(app)
 class Profile(db.Model):
     __tablename__ = "profiles"
     id = db.Column(db.Integer, primary_key=True)
-    
     logo = db.Column(db.String(100000))
+    banner = db.Column(db.String(100000))
     title = db.Column(db.String(100000)) 
     byline = db.Column(db.String(100000))
     headline = db.Column(db.String(100000))
@@ -33,8 +33,9 @@ class Profile(db.Model):
     pic1 = db.Column(db.String(100000))
     pic2 = db.Column(db.String(100000))
 
-    def __init__(self, logo, title, byline, headline, opening, text1, text2, pic1, pic2):
+    def __init__(self, logo, banner, title, byline, headline, opening, text1, text2, pic1, pic2):
         self.logo = logo
+        self.banner = banner
         self.title = title
         self.byline = byline
         self.headline = headline
@@ -46,7 +47,7 @@ class Profile(db.Model):
 
 class ProfileSchema(ma.Schema):
     class Meta: 
-        fields = ("id", "logo", "title", "byline", "headline", "opening", "text1", "text2", "pic1", "pic2")
+        fields = ("id", "logo", "banner", "title", "byline", "headline", "opening", "text1", "text2", "pic1", "pic2")
 
 profile_schema = ProfileSchema()
 profiles_schema = ProfileSchema(many=True)
@@ -62,6 +63,7 @@ def get_profiles():
 @app.route("/profile", methods=["POST"])
 def add_profile():
     logo = request.json["logo"]
+    banner = request.json["banner"]
     title = request.json["title"]
     byline = request.json["byline"]
     headline = request.json["headline"]
@@ -72,7 +74,7 @@ def add_profile():
     pic2 = request.json["pic2"]
 
 
-    new_profile = Profile(logo, title, byline, headline, opening, text1, text2, pic1, pic2)
+    new_profile = Profile(logo, banner, title, byline, headline, opening, text1, text2, pic1, pic2)
     db.session.add(new_profile)
     db.session.commit()
 
@@ -84,6 +86,7 @@ def update_profile(id):
     profile = Profile.query.get(id)
 
     profile.logo = request.json["logo"]
+    profile.banner = request.json["banner"]
     profile.title = request.json["title"]
     profile.byline = request.json["byline"]
     profile.headline = request.json["headline"] 
