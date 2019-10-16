@@ -24,7 +24,6 @@ class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
     logo = db.Column(db.String(100000))
-    done = db.Column(db.Boolean)
     title = db.Column(db.String(100000)) 
     byline = db.Column(db.String(100000))
     headline = db.Column(db.String(100000))
@@ -54,7 +53,9 @@ profiles_schema = ProfileSchema(many=True)
 
 @app.route("/profiles", methods=["GET"])
 def get_profiles():
+    print('initial work')
     all_profiles = Profile.query.all()
+    print('working')
     result = profiles_schema.dump(all_profiles)
     return jsonify(result)
 
