@@ -11,7 +11,7 @@ app = Flask(__name__)
 heroku = Heroku(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://qkxwsxtzqarbil:71ea2fdf5ca277a6f1004142878a01b100160153c7e2bc796d67b8578209ac32@ec2-174-129-220-12.compute-1.amazonaws.com:5432/dcqtupk0oa2c1m"
-# "sqlite:///team4project.db" 
+# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///team4project.db"
 # postgres://qkxwsxtzqarbil:71ea2fdf5ca277a6f1004142878a01b100160153c7e2bc796d67b8578209ac32@ec2-174-129-220-12.compute-1.amazonaws.com:5432/dcqtupk0oa2c1m
 
 CORS(app)
@@ -26,12 +26,12 @@ class Profile(db.Model):
     title = db.Column(db.String(100))
     done = db.Column(db.Boolean)
 
-    def __init__(self, logo, title, byline, headline, opening_text, text1, text2, pic1, pic2):
+    def __init__(self, logo, title, byline, headline, opening, text1, text2, pic1, pic2):
         self.logo = logo
         self.title = title
         self.byline = byline
         self.headline = headline
-        self.opening_text = opening_text
+        self.opening = opening
         self.text1 = text1
         self.text2 = text2
         self.pic1 = pic1
@@ -39,7 +39,7 @@ class Profile(db.Model):
 
 class ProfileSchema(ma.Schema):
     class Meta: 
-        fields = ("id", "logo", "title", "byline", "headline", "opening_text", "text1", "text2", "pic1", "pic2")
+        fields = ("id", "logo", "title", "byline", "headline", "opening", "text1", "text2", "pic1", "pic2")
 
 profile_schema = ProfileSchema()
 profiles_schema = ProfileSchema(many=True)
@@ -56,14 +56,14 @@ def add_profile():
     title = request.json["title"]
     byline = request.json["byline"]
     headline = request.json["headline"]
-    opening_text = request.json["opening_text"]
+    opening = request.json["opening"]
     text1 = request.json["text1"]
     text2 = request.json["text2"]
     pic1 = request.json["pic1"]
     pic2 = request.json["pic2"]
 
 
-    new_profile = Profile(logo, title, byline, headline, opening_text, text1, text2, pic1, pic2)
+    new_profile = Profile(logo, title, byline, headline, opening, text1, text2, pic1, pic2)
     db.session.add(new_profile)
     db.session.commit()
 
@@ -78,7 +78,7 @@ def update_profile(id):
     profile.title = request.json["title"]
     profile.byline = request.json["byline"]
     profile.headline = request.json["headline"] 
-    profile.opening_text = request.json["opening_text"]
+    profile.opening = request.json["opening"]
     profile.text1 = request.json["text1"]
     profile.text2 = request.json["text2"]
     profile.pic1 = request.json["pic1"]
