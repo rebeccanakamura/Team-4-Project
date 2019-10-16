@@ -1,5 +1,5 @@
 # https://git.heroku.com/team4project2019october.git
-# https://team4project2019october.herokuapp.com/
+# https://projectteam4october2019.herokuapp.com/
 
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy 
@@ -10,9 +10,9 @@ from flask_heroku import Heroku
 app = Flask(__name__)
 heroku = Heroku(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://qkxwsxtzqarbil:71ea2fdf5ca277a6f1004142878a01b100160153c7e2bc796d67b8578209ac32@ec2-174-129-220-12.compute-1.amazonaws.com:5432/dcqtupk0oa2c1m"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://yekodbybsjwmla:fd225b7fe801596f253a2bf713574d7485c7f6616747abbc535b744f79c25543@ec2-54-243-238-226.compute-1.amazonaws.com:5432/d3n33i0cmarch9"
 # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///team4project.db"
-# postgres://qkxwsxtzqarbil:71ea2fdf5ca277a6f1004142878a01b100160153c7e2bc796d67b8578209ac32@ec2-174-129-220-12.compute-1.amazonaws.com:5432/dcqtupk0oa2c1m
+# postgres://yekodbybsjwmla:fd225b7fe801596f253a2bf713574d7485c7f6616747abbc535b744f79c25543@ec2-54-243-238-226.compute-1.amazonaws.com:5432/d3n33i0cmarch9
 
 CORS(app)
 
