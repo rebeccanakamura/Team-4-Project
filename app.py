@@ -24,6 +24,7 @@ class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
     logo = db.Column(db.String(100000))
+    done = db.Column(db.Boolean)
     title = db.Column(db.String(100000)) 
     byline = db.Column(db.String(100000))
     headline = db.Column(db.String(100000))
